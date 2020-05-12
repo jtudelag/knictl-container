@@ -10,6 +10,7 @@ WORKDIR "$INSTALLER_FOLDER"
 RUN make build
 
 FROM registry.redhat.io/ubi8/ubi-minimal:8.2
+RUN microdnf install git
 COPY --from=0 /opt/app-root/src/gerrit.akraino.org/kni/installer/knictl /usr/bin/knictl
 ENTRYPOINT ["/usr/bin/knictl"]
 
